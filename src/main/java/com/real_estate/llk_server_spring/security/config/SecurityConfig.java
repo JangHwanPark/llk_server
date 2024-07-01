@@ -1,5 +1,8 @@
 package com.real_estate.llk_server_spring.security.config;
 
+import com.real_estate.llk_server_spring.security.entity.RefreshRepository;
+import com.real_estate.llk_server_spring.security.filter.LoginFilter;
+import com.real_estate.llk_server_spring.security.jwt.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +15,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -24,6 +27,8 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final AuthenticationConfiguration authenticationConfiguration;
+    private final JWTUtil util;
+    private final RefreshRepository refreshRepository;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -63,6 +68,7 @@ public class SecurityConfig {
         http.sessionManagement((session) ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
+        http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),util,refreshRepository), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
