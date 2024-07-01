@@ -36,13 +36,13 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain securityConfig(HttpSecurity http) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf((csrf) -> csrf.disable());
         http.formLogin((formLogin) -> formLogin.disable());
         http.httpBasic((httpBasic) -> httpBasic.disable());
         http.authorizeHttpRequests((req)->
                     req
-                            .requestMatchers("/data/**").permitAll()
+                            .requestMatchers("/join").permitAll()
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
