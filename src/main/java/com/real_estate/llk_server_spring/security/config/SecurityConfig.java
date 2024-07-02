@@ -1,6 +1,7 @@
 package com.real_estate.llk_server_spring.security.config;
 
 import com.real_estate.llk_server_spring.security.entity.RefreshRepository;
+import com.real_estate.llk_server_spring.security.filter.CustomLogoutFilter;
 import com.real_estate.llk_server_spring.security.filter.JWTFilter;
 import com.real_estate.llk_server_spring.security.filter.LoginFilter;
 import com.real_estate.llk_server_spring.security.jwt.JWTUtil;
@@ -17,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -48,7 +50,7 @@ public class SecurityConfig {
         http.httpBasic((httpBasic) -> httpBasic.disable());
         http.authorizeHttpRequests((req)->
                     req
-                            .requestMatchers("/join").permitAll()
+                            .requestMatchers("/join","/reissue").permitAll()
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
@@ -70,6 +72,7 @@ public class SecurityConfig {
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
         http.addFilterBefore(new JWTFilter(util), LoginFilter.class);
+        http.addFilterBefore(new CustomLogoutFilter(util,refreshRepository), LogoutFilter.class);
         http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),util,refreshRepository), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
