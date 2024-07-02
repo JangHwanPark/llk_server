@@ -1,6 +1,7 @@
 package com.real_estate.llk_server_spring.security.config;
 
 import com.real_estate.llk_server_spring.security.entity.RefreshRepository;
+import com.real_estate.llk_server_spring.security.filter.JWTFilter;
 import com.real_estate.llk_server_spring.security.filter.LoginFilter;
 import com.real_estate.llk_server_spring.security.jwt.JWTUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -68,6 +69,7 @@ public class SecurityConfig {
         http.sessionManagement((session) ->
                     session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 );
+        http.addFilterBefore(new JWTFilter(util), LoginFilter.class);
         http.addFilterAt(new LoginFilter(authenticationManager(authenticationConfiguration),util,refreshRepository), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
