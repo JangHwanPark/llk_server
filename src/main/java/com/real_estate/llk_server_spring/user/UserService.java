@@ -19,13 +19,13 @@ public class UserService {
         if(joinDTO.getPassword().isEmpty() && joinDTO.getPassword().isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
-        if(userRepository.existsByUsername(joinDTO.getUsername())) {
+        if(userRepository.existsByEmail(joinDTO.getEmail())) {
             return ResponseEntity.status(HttpStatus.CONFLICT.value()).body("Username already exists");
         }
         Users user = new Users();
-        user.setUsername(joinDTO.getUsername());
-        user.setPassword(passwordEncoder.encode(joinDTO.getPassword()));
-        user.setRole("ROLE_USER");
+        user.setEmail(joinDTO.getEmail());
+        user.setUserPw(passwordEncoder.encode(joinDTO.getPassword()));
+        user.setUserRole("ROLE_USER");
         userRepository.save(user);
         return ResponseEntity.ok().body("User successfully joined");
     }

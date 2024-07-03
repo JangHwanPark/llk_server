@@ -15,17 +15,6 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String username;
-    private String password;
-    private String role;
-
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private LocalDateTime created;
-    @UpdateTimestamp
-    @Column(nullable = false)
-    private LocalDateTime updated;
-
     @Size(max = 40)
     @Column(name = "email", length = 40)
     private String email;
@@ -42,10 +31,13 @@ public class Users {
     @Column(name = "user_role", length = 20)
     private String userRole;
 
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDateTime created;
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDateTime updated;
+
     public Users() {}
 
-    public Users(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
 }
