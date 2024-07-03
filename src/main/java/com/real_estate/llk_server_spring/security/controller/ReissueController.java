@@ -52,7 +52,7 @@ public class ReissueController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Refresh token is invalid");
         }
 
-        String username = util.getUsername(refresh);
+        String username = util.getEmail(refresh);
         String role = util.getRole(refresh);
 
         String newAccess = util.createJwt("Access",username,role,6000L);

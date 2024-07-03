@@ -16,7 +16,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<?> userJoinProc(JoinDTO joinDTO) {
-        if(joinDTO.getPassword().isEmpty() && joinDTO.getPassword().isEmpty()) {
+        if(joinDTO.getEmail().isEmpty() && joinDTO.getPassword().isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
         if(userRepository.existsByEmail(joinDTO.getEmail())) {

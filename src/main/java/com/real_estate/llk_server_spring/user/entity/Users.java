@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
     private Long id;
     @Size(max = 40)
     @Column(name = "email", length = 40)
@@ -39,5 +40,10 @@ public class Users {
     private LocalDateTime updated;
 
     public Users() {}
+
+    public Users(String email, String userPw) {
+        this.email = email;
+        this.userPw = userPw;
+    }
 
 }

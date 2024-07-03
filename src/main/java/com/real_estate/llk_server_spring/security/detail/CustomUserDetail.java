@@ -19,7 +19,7 @@ public class CustomUserDetail implements UserDetails {
         authorities.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return users.getRole();
+                return users.getUserRole();
             }
         });
         return authorities;
@@ -27,12 +27,12 @@ public class CustomUserDetail implements UserDetails {
 
     @Override
     public String getPassword() {
-        return users.getPassword();
+        return users.getUserPw();
     }
 
     @Override
     public String getUsername() {
-        return users.getUsername();
+        return users.getEmail();
     }
     // 아래의 매소드 들은 사용자의 아이디가 만료, 잠김, 사용가능 한지에 대한 여부를 반환하는 메서드 입니다.
     @Override

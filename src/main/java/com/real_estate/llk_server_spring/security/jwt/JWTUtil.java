@@ -21,8 +21,8 @@ public class JWTUtil {
     }
     // 아래에 있는 3개의 메서드 들은 검증을 진행하는 메서드 입니다.
     // 사용자의 id 값을 검증하는 메서드 입니다.
-    public String getUsername(String token) {
-        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("username", String.class);
+    public String getEmail(String token) {
+        return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("email", String.class);
     }
     // 사용자의 권한을 검증하는 메서드 입니다.
     public String getRole(String token) {
@@ -37,11 +37,11 @@ public class JWTUtil {
         return Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().get("category", String.class);
     }
     // 이 메서드는 토큰을 생성하는 메서드 입니다.
-    public String createJwt(String category, String username, String role, Long expiredMs) {
+    public String createJwt(String category, String email, String role, Long expiredMs) {
 
         return Jwts.builder()
                 .claim("category", category)
-                .claim("username", username)
+                .claim("email", email)
                 .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + expiredMs))
