@@ -25,6 +25,7 @@ public class UserService {
         Users user = new Users();
         user.setEmail(joinDTO.getEmail());
         user.setUserPw(passwordEncoder.encode(joinDTO.getPassword()));
+        user.setUserPhone(joinDTO.getPhone());
         user.setUserRole("ROLE_USER");
         userRepository.save(user);
         return ResponseEntity.ok().body("User successfully joined");
