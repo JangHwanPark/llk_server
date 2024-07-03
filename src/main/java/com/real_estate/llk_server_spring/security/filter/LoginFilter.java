@@ -47,10 +47,10 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
             throw new RuntimeException(e);
         }
 
-        String username = loginDTO.getUsername();
+        String email = loginDTO.getEmail();
         String password = loginDTO.getPassword();
 
-        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(username, password, null);
+        UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(email, password, null);
 
         return authenticationManager.authenticate(authToken);
 
@@ -58,7 +58,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authResult) throws IOException, ServletException {
-        String username = authResult.getName();
+        String email = authResult.getName();
 
         Collection<? extends GrantedAuthority> authorities = authResult.getAuthorities();
         Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
@@ -66,11 +66,11 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String role = auth.getAuthority();
 
         //토큰 생성
-        String access = util.createJwt("Access", username, role, 6000L);
-        String refresh = util.createJwt("Refresh", username, role, 60000L);
+        String access = util.createJwt("Access", email, role, 6000L);
+        String refresh = util.createJwt("Refresh", email, role, 60000L);
 
         //Refresh 토큰 저장
-        addRefreshEntity(username, refresh, 60000L);
+        addRefreshEntity(email, refresh, 60000L);
 
         //응답 설정
         response.setHeader("Access", access);

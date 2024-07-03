@@ -48,10 +48,10 @@ public class JWTFilter extends OncePerRequestFilter {
             return;
         }
 
-        String username = util.getUsername(access);
+        String email = util.getEmail(access);
         String role = util.getRole(access);
 
-        Users user = new Users(username, role);
+        Users user = new Users(email, role);
 
         CustomUserDetail customUserDetail = new CustomUserDetail(user);
 
