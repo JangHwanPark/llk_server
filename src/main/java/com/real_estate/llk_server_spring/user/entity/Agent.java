@@ -1,7 +1,7 @@
-package com.real_estate.llk_server_spring.entity;
+package com.real_estate.llk_server_spring.user.entity;
 
 import com.real_estate.llk_server_spring.Product.Entity.Product;
-import com.real_estate.llk_server_spring.user.entity.Users;
+import com.real_estate.llk_server_spring.entity.Agentrating;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;

@@ -1,5 +1,6 @@
 package com.real_estate.llk_server_spring.entity;
 
+import com.real_estate.llk_server_spring.user.entity.Agent;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import jakarta.persistence.*;
 import lombok.Getter;
