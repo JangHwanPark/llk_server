@@ -1,6 +1,5 @@
 package com.real_estate.llk_server_spring.Products;
 
-import com.real_estate.llk_server_spring.Product.Entity.Products;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
