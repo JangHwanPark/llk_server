@@ -15,7 +15,7 @@ spring:
     password: ${data.password}
     driver-class-name: org.postgresql.Driver
   config:
-    import: classpath:jwt.yml, classpath:database.yml
+    import: classpath:jwt.yml, classpath:database.yml, classpath:google-oauth2.yml
   jpa:
     hibernate:
       ddl-auto: update
@@ -29,6 +29,16 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   jwt:
     secret: ${jwt.secret}
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${google.id}
+            client-secret: ${google.password}
+            scope:
+              - profile
+              - email
 
 logging:
   level:

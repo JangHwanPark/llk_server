@@ -16,6 +16,10 @@ public class Users {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long id;
+
+    @Column(name = "oauth_username")
+    private String username;
+
     @Size(max = 40)
     @Column(name = "email", length = 40)
     private String email;
