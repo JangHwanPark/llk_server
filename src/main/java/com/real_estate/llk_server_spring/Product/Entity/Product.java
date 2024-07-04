@@ -17,6 +17,7 @@ import java.time.LocalDate;
 public class Product {
     @Id
     @ColumnDefault("nextval('db2451506_llk.product_product_id_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id", nullable = false)
     private Long id;
 
