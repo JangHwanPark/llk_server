@@ -5,9 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="25128750-e3f4-4858-a842-0ecee1fdeef5" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/Entity/Products.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/real_estate/llk_server_spring/Products/ProductsTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/Entity/ProductRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/ProductController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/ProductService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/dto/ProjectDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/user/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/user/entity/Users.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +44,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -64,6 +68,10 @@
     &quot;accountId&quot;: &quot;a75f30ad-87a1-4b64-b30d-92f8e07e3af0&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -77,13 +85,17 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Gradle.InteliJProjects 빌드.executor": "Run",
+    "Gradle.llk_server 빌드.executor": "Run",
+    "HTTP 요청.generated-requests | #3.executor": "Run",
+    "HTTP 요청.generated-requests | #4.executor": "Run",
+    "HTTP 요청.generated-requests | #5.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Spring Boot.LlkServerSpringApplication.executor": "Run",
-    "git-widget-placeholder": "dev",
+    "git-widget-placeholder": "dev2",
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "17",
     "kotlin-language-version-configured": "true",
@@ -97,9 +109,28 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\user\llk_server\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.LlkServerSpringApplication">
+    <configuration name="generated-requests | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="3" requestIdentifier="#3" runType="단일 요청 실행">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #4" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="4" requestIdentifier="#4" runType="단일 요청 실행">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="단일 요청 실행">
+      <method v="2" />
+    </configuration>
     <configuration name="LlkServerSpringApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="llk_server_fork.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.real_estate.llk_server_spring.LlkServerSpringApplication" />
@@ -107,6 +138,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="HTTP 요청.generated-requests | #5" />
+        <item itemvalue="HTTP 요청.generated-requests | #4" />
+        <item itemvalue="HTTP 요청.generated-requests | #3" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>

@@ -49,5 +49,4 @@ public class Users {
         this.email = email;
         this.userPw = userPw;
     }
-
 }
