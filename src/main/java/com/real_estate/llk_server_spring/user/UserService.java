@@ -16,6 +16,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public ResponseEntity<?> userJoinProc(JoinDTO joinDTO) {
+        System.out.println("JoinDTO: " + joinDTO.toString());
         if(joinDTO.getEmail().isEmpty() && joinDTO.getPassword().isEmpty()) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
@@ -27,6 +28,7 @@ public class UserService {
         user.setUserPw(passwordEncoder.encode(joinDTO.getPassword()));
         user.setUserPhone(joinDTO.getPhone());
         user.setUserRole("ROLE_USER");
+        System.out.println("User: " + user.toString());
         userRepository.save(user);
         return ResponseEntity.ok().body("User successfully joined");
     }

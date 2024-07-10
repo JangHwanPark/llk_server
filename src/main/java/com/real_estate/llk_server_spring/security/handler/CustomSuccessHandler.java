@@ -28,44 +28,43 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
     private final RefreshRepository refreshRepository;
 
     @Override
-    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {
-        //OAuth2User
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+        // OAuth2User
         CustomOAuth2User customUserDetails = (CustomOAuth2User) authentication.getPrincipal();
 
         String username = customUserDetails.getUsername();
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        Iterator<? extends GrantedAuthority> iterator = authorities.iterator();
-        GrantedAuthority auth = iterator.next();
-        String role = auth.getAuthority();
+        String role = authorities.iterator().next().getAuthority();
 
-        //토큰 생성
+        // 토큰 생성
         String access = util.createJwt("Access", username, role, 6000L);
         String refresh = util.createJwt("Refresh", username, role, 60000L);
 
-        //Refresh 토큰 저장
+        // Refresh 토큰 저장
         addRefreshEntity(username, refresh, 60000L);
 
-        //응답 설정
+        // 응답 설정
         response.setHeader("Access", access);
         response.addCookie(createCookie("Refresh", refresh));
         response.setStatus(HttpStatus.OK.value());
-        response.sendRedirect("http://localhost:5173/");
+
+        // 로그 추가
+        System.out.println("Authentication successful. Redirecting to http://localhost:5173/");
+
+        // sendRedirect 수정
+        getRedirectStrategy().sendRedirect(request, response, "http://localhost:5173/");
     }
 
     private Cookie createCookie(String key, String value) {
-
         Cookie cookie = new Cookie(key, value);
-        cookie.setMaxAge(60*60*60);
-        //cookie.setSecure(true);
+        cookie.setMaxAge(60 * 60 * 60);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-
         return cookie;
     }
 
     private void addRefreshEntity(String user, String refresh, Long expiredMs) {
-
         Date date = new Date(System.currentTimeMillis() + expiredMs);
 
         Refresh refreshEntity = new Refresh();
