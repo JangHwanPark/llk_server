@@ -55,7 +55,7 @@ public class SecurityConfig {
         http.httpBasic((httpBasic) -> httpBasic.disable());
         http.authorizeHttpRequests((req)->
                     req
-                            .requestMatchers("/join","/reissue","/products/**").permitAll()
+                            .requestMatchers("/join","/reissue","/products/**","/availability/email").permitAll()
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
