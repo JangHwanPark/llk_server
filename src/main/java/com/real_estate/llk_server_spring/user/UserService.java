@@ -1,5 +1,6 @@
 package com.real_estate.llk_server_spring.user;
 
+import com.real_estate.llk_server_spring.user.dto.EmailDTO;
 import com.real_estate.llk_server_spring.user.dto.JoinDTO;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import com.real_estate.llk_server_spring.user.entity.UserRepository;
@@ -31,5 +32,15 @@ public class UserService {
         System.out.println("User: " + user.toString());
         userRepository.save(user);
         return ResponseEntity.ok().body("User successfully joined");
+    }
+
+    public ResponseEntity<?> emailAvailability(EmailDTO emailDTO) {
+        if(emailDTO.getEmail().isEmpty()) {
+            return ResponseEntity.ok().body(false);
+        }
+        if(!userRepository.existsByEmail(emailDTO.getEmail())) {
+            return ResponseEntity.ok().body(false);
+        }
+        return ResponseEntity.ok().body(true);
     }
 }
