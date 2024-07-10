@@ -36,7 +36,7 @@ public class UserService {
 
     public ResponseEntity<?> emailAvailability(EmailDTO emailDTO) {
         if(emailDTO.getEmail().isEmpty()) {
-            return ResponseEntity.ok().body(false);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid email");
         }
         if(!userRepository.existsByEmail(emailDTO.getEmail())) {
             return ResponseEntity.ok().body(false);
