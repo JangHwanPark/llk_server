@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table(name = "favorite", schema = "db2451506_llk")
 public class Favorite {
     @Id
-    @ColumnDefault("nextval('db2451506_llk.favorite_favorite_id_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "favorite_id", nullable = false)
     private Long id;
 

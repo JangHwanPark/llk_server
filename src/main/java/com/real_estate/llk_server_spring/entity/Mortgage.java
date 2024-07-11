@@ -17,7 +17,7 @@ import java.time.LocalDate;
 @Table(name = "mortgage", schema = "db2451506_llk")
 public class Mortgage {
     @Id
-    @ColumnDefault("nextval('db2451506_llk.mortgage_mortgage_id_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "mortgage_id", nullable = false)
     private Long id;
 
