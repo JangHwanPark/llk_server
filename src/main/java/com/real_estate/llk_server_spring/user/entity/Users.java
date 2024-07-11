@@ -33,8 +33,9 @@ public class Users {
     private String userPhone;
 
     @Size(max = 20)
+    @Enumerated(EnumType.STRING)
     @Column(name = "user_role", length = 20)
-    private String userRole;
+    private UserRoles userRoles;
 
     @CreationTimestamp
     @Column(nullable = false, updatable = false)

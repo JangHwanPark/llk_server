@@ -4,6 +4,7 @@ import com.real_estate.llk_server_spring.user.dto.GoogleResponse;
 import com.real_estate.llk_server_spring.user.dto.Oauth2Response;
 import com.real_estate.llk_server_spring.user.dto.UserDTO;
 import com.real_estate.llk_server_spring.user.entity.UserRepository;
+import com.real_estate.llk_server_spring.user.entity.UserRoles;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
@@ -39,7 +40,7 @@ public class CustomOauth2UserDetailService extends DefaultOAuth2UserService {
             Users users = new Users();
             users.setUsername(username);
             users.setEmail(oAuth2Response.getEmail());
-            users.setUserRole("ROLE_USER");
+            users.setUserRoles(UserRoles.ROLE_USER);
             userRepository.save(users);
 
             UserDTO userDTO = new UserDTO();
