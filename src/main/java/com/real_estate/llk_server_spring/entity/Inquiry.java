@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Table(name = "inquiry", schema = "db2451506_llk")
 public class Inquiry {
     @Id
-    @ColumnDefault("nextval('db2451506_llk.inquiry_inquiry_id_seq'::regclass)")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "inquiry_id", nullable = false)
     private Long id;
 

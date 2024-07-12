@@ -2,6 +2,7 @@ package com.real_estate.llk_server_spring.user;
 
 import com.real_estate.llk_server_spring.user.dto.EmailDTO;
 import com.real_estate.llk_server_spring.user.dto.JoinDTO;
+import com.real_estate.llk_server_spring.user.entity.UserRoles;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import com.real_estate.llk_server_spring.user.entity.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,7 @@ public class UserService {
         user.setEmail(joinDTO.getEmail());
         user.setUserPw(passwordEncoder.encode(joinDTO.getPassword()));
         user.setUserPhone(joinDTO.getPhone());
-        user.setUserRole("ROLE_USER");
+        user.setUserRoles(UserRoles.ROLE_USER);
         System.out.println("User: " + user.toString());
         userRepository.save(user);
         return ResponseEntity.ok().body("User successfully joined");

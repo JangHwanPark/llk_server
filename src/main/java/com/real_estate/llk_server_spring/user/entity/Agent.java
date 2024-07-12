@@ -1,6 +1,7 @@
 package com.real_estate.llk_server_spring.user.entity;
 
 import com.real_estate.llk_server_spring.Product.Entity.Product;
+import com.real_estate.llk_server_spring.contact.entity.Contact;
 import com.real_estate.llk_server_spring.entity.Agentrating;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
@@ -18,6 +19,7 @@ import java.util.Set;
 @Table(name = "agent", schema = "db2451506_llk")
 public class Agent {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private Long id;
 
