@@ -20,21 +20,17 @@ public class Users {
     @Column(name = "oauth_username")
     private String username;
 
-    @Size(max = 40)
-    @Column(name = "email", length = 40)
+    @Column(name = "email")
     private String email;
 
-    @Size(max = 100)
-    @Column(name = "user_pw", length = 100)
+    @Column(name = "user_pw")
     private String userPw;
 
-    @Size(max = 12)
-    @Column(name = "user_phone", length = 12)
+    @Column(name = "user_phone")
     private String userPhone;
 
-    @Size(max = 20)
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role", length = 20)
+    @Column(name = "user_role")
     private UserRoles userRoles;
 
     @CreationTimestamp
@@ -43,6 +39,9 @@ public class Users {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updated;
+
+    @OneToOne(mappedBy = "users")
+    private Agent agent;
 
     public Users() {}
 

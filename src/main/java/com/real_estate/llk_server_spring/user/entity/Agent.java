@@ -1,17 +1,11 @@
 package com.real_estate.llk_server_spring.user.entity;
 
 import com.real_estate.llk_server_spring.Product.Entity.Product;
-import com.real_estate.llk_server_spring.contact.entity.Contact;
-import com.real_estate.llk_server_spring.entity.Agentrating;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
-import org.hibernate.annotations.ColumnDefault;
 
-import java.math.BigDecimal;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.List;
 
 @Getter
 @Setter
@@ -20,34 +14,22 @@ import java.util.Set;
 public class Agent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id", nullable = false)
+    @Column(name = "agent_id", nullable = false)
     private Long id;
 
-    @MapsId
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private Users users;
-
-    @Size(max = 30)
-    @Column(name = "agent_first_name", length = 30)
+    @Column(name = "agent_first_name")
     private String agentFirstName;
 
-    @Size(max = 30)
-    @Column(name = "agent_last_name", length = 30)
+    @Column(name = "agent_last_name")
     private String agentLastName;
 
-    @Size(max = 20)
-    @Column(name = "license_number", length = 20)
+    @Column(name = "license_number")
     private String licenseNumber;
 
-    @ColumnDefault("0")
-    @Column(name = "average_rating", precision = 3, scale = 2)
-    private BigDecimal averageRating;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private Users users;
 
     @OneToMany(mappedBy = "agent")
-    private Set<Agentrating> agentratings = new LinkedHashSet<>();
-
-    @OneToMany(mappedBy = "user")
-    private Set<Product> products = new LinkedHashSet<>();
-
+    private List<Product> products;
 }

@@ -23,7 +23,7 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid username or password");
         }
         if(userRepository.existsByEmail(joinDTO.getEmail())) {
-            return ResponseEntity.status(HttpStatus.CONFLICT.value()).body("Username already exists");
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED.value()).body("Username already exists");
         }
         Users user = new Users();
         user.setEmail(joinDTO.getEmail());
