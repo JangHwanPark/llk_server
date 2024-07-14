@@ -8,4 +8,5 @@ public class AddReviewDTO {
     private String reviewName;
     private String reviewDescription;
     private String address;
+    private String agentLicense;
 }
