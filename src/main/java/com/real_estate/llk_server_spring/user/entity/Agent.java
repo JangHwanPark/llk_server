@@ -1,6 +1,7 @@
 package com.real_estate.llk_server_spring.user.entity;
 
 import com.real_estate.llk_server_spring.Product.Entity.Product;
+import com.real_estate.llk_server_spring.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,4 +33,7 @@ public class Agent {
 
     @OneToMany(mappedBy = "agent")
     private List<Product> products;
+
+    @OneToMany(mappedBy = "agent")
+    private List<Review> reviews;
 }
