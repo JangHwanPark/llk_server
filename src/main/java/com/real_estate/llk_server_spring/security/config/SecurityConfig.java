@@ -55,8 +55,9 @@ public class SecurityConfig {
         http.httpBasic((httpBasic) -> httpBasic.disable());
         http.authorizeHttpRequests((req)->
                     req
-                            .requestMatchers("/join","/reissue","/products/**","/availability/email","/contact").permitAll()
-                            .requestMatchers("/review/**").hasAnyRole("USER","ADMIN")
+                            .requestMatchers("/join","/reissue","/products/**","/availability/email",
+                                    "/contact","/review/list").permitAll()
+                            .requestMatchers("/review/add").hasAnyRole("USER","ADMIN")
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
