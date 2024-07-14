@@ -56,6 +56,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((req)->
                     req
                             .requestMatchers("/join","/reissue","/products/**","/availability/email","/contact").permitAll()
+                            .requestMatchers("/review/**").hasAnyRole("USER","ADMIN")
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
