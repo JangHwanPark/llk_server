@@ -57,7 +57,7 @@ public class SecurityConfig {
                     req
                             .requestMatchers("/join","/reissue","/products/**","/availability/email",
                                     "/contact","/review/list").permitAll()
-                            .requestMatchers("/review/add").hasAnyRole("USER","ADMIN")
+                            .requestMatchers("/review/add").hasAnyRole("USER","ADMIN","AGENT")
                             .requestMatchers("/admin/user/**").hasRole("ADMIN")
                             .anyRequest().authenticated()
                 );
