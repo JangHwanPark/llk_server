@@ -10,6 +10,7 @@ import com.real_estate.llk_server_spring.user.entity.Agent;
 import com.real_estate.llk_server_spring.user.entity.AgentRepository;
 import com.real_estate.llk_server_spring.user.entity.UserRepository;
 import com.real_estate.llk_server_spring.user.entity.Users;
+import com.real_estate.llk_server_spring.util.LlkUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,11 +27,10 @@ public class ReviewService {
     private final JWTUtil util;
     private final UserRepository userRepository;
     private final AgentRepository agentRepository;
+    private final LlkUtil llkUtil;
 
     public ResponseEntity<?> addReviewProc(AddReviewDTO addReviewDTO, HttpServletRequest req) {
-        String access = req.getHeader("Access");
-        String email = util.getEmail(access);
-        Users user = userRepository.findByEmail(email);
+        Users user = llkUtil.usingRequestGetUser(req);
         Agent agent = agentRepository.findByLicenseNumber(addReviewDTO.getAgentLicense())
                 .orElseThrow( ()-> new LlkServerException(HttpStatus.NOT_FOUND, LlkServerExceptionErrorCode.NOT_FOUNT_AGENT));
         Review review = new Review();
