@@ -2,6 +2,7 @@ package com.real_estate.llk_server_spring.security.filter;
 
 import com.real_estate.llk_server_spring.security.detail.CustomUserDetail;
 import com.real_estate.llk_server_spring.security.jwt.JWTUtil;
+import com.real_estate.llk_server_spring.user.entity.UserRoles;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
@@ -41,7 +42,7 @@ public class JWTFilter extends OncePerRequestFilter {
 
         String category = util.getCategory(access);
 
-        if(category.equals("Access")) {
+        if(!category.equals("Access")) {
             PrintWriter out = response.getWriter();
             out.print("Invalid Access Token");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
@@ -51,7 +52,9 @@ public class JWTFilter extends OncePerRequestFilter {
         String email = util.getEmail(access);
         String role = util.getRole(access);
 
-        Users user = new Users(email, role);
+        UserRoles userRole = UserRoles.valueOf(role);
+
+        Users user = new Users(email, userRole);
 
         CustomUserDetail customUserDetail = new CustomUserDetail(user);
 

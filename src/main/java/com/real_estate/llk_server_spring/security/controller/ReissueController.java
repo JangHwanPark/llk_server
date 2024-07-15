@@ -55,8 +55,8 @@ public class ReissueController {
         String username = util.getEmail(refresh);
         String role = util.getRole(refresh);
 
-        String newAccess = util.createJwt("Access",username,role,6000L);
-        String newRefresh = util.createJwt("Refresh",username,role,60000L);
+        String newAccess = util.createJwt("Access",username,role,10*10000L);
+        String newRefresh = util.createJwt("Refresh",username,role,30*10000L);
 
         refreshRepository.deleteByRefresh(refresh);
         addRefreshEntity(username,newRefresh,60000L);

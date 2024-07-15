@@ -2,6 +2,7 @@ package com.real_estate.llk_server_spring.user;
 
 import com.real_estate.llk_server_spring.user.dto.EmailDTO;
 import com.real_estate.llk_server_spring.user.dto.JoinDTO;
+import com.real_estate.llk_server_spring.user.dto.RoleDTO;
 import com.real_estate.llk_server_spring.user.entity.UserRoles;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import com.real_estate.llk_server_spring.user.entity.UserRepository;
@@ -10,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -43,5 +46,31 @@ public class UserService {
             return ResponseEntity.ok().body(false);
         }
         return ResponseEntity.ok().body(true);
+    }
+
+    public ResponseEntity<?> getUserListProc() {
+        List<Users> users = userRepository.findAll();
+        return ResponseEntity.ok().body(users);
+    }
+
+    public ResponseEntity<?> agentAuthorizationProc(RoleDTO roleDTO) {
+        Users user = userRepository.findByEmail(roleDTO.getEmail());
+        if(user == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User not found");
+        }
+        if(roleDTO.getRoleNum() == 1) {
+            int result = userRepository.updateUserRolesByEmail(UserRoles.ROLE_USER, roleDTO.getEmail());
+            if(result == 1) {
+                return ResponseEntity.ok().body(true);
+            }
+        }
+        if(roleDTO.getRoleNum() == 2) {
+            int result = userRepository.updateUserRolesByEmail(UserRoles.ROLE_AGENT, roleDTO.getEmail());
+            if(result == 1) {
+                return ResponseEntity.ok().body(true);
+            }
+        }
+
+        return ResponseEntity.ok().body(false);
     }
 }

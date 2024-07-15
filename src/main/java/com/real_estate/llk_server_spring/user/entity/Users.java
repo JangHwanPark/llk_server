@@ -1,13 +1,14 @@
 package com.real_estate.llk_server_spring.user.entity;
 
+import com.real_estate.llk_server_spring.review.entity.Review;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -43,10 +44,18 @@ public class Users {
     @OneToOne(mappedBy = "users")
     private Agent agent;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Review> reviews;
+
     public Users() {}
 
     public Users(String email, String userPw) {
         this.email = email;
         this.userPw = userPw;
+    }
+
+    public Users(String email, UserRoles userRoles) {
+        this.email = email;
+        this.userRoles = userRoles;
     }
 }
