@@ -15,7 +15,7 @@ spring:
     password: ${data.password}
     driver-class-name: org.postgresql.Driver
   config:
-    import: classpath:jwt.yml, classpath:database.yml, classpath:google-oauth2.yml
+    import: classpath:jwt.yml, classpath:database.yml, classpath:google-oauth2.yml, classpath:logger.yml
   jpa:
     hibernate:
       ddl-auto: update
@@ -48,3 +48,4 @@ logging:
         type: trace
       springframework:
         security: debug
+    root: info
