@@ -42,7 +42,7 @@ public class ReviewService {
         return ResponseEntity.status(HttpStatus.CREATED).body("Success write review");
     }
 
-    public ResponseEntity<?> getReviewList(String licenseNumber) {
+    public ResponseEntity<?> getReviewListProc(String licenseNumber) {
         Map<String, Object> result = new HashMap<>();
         Agent agent = llkUtil.usingLicenseNumberGetAgent(licenseNumber);
         List<Review> reviews = reviewRepository.findByAgent(agent);
