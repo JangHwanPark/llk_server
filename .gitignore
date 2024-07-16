@@ -39,3 +39,6 @@ out/
 
 ### yml ###
 *.yml
+
+### log file ###
+*.gz
