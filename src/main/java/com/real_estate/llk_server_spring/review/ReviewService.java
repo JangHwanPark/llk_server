@@ -48,7 +48,7 @@ public class ReviewService {
         List<Review> reviews = reviewRepository.findByAgent(agent);
         List<Object> list = new ArrayList<>();
         for (Review review : reviews) {
-            result.put("uesr_name",review.getUser().getEmail());
+            result.put("user_name",review.getUser().getEmail());
             result.put("review_name", review.getReviewName());
             result.put("review_description", review.getReviewDescription());
             result.put("review_address", review.getAddress());
