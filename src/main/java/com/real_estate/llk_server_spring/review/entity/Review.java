@@ -7,6 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "review")
@@ -27,6 +32,21 @@ public class Review {
 
     @Column(name = "address", nullable = false)
     private String address;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type", nullable = false)
+    private ReviewType type;
+
+    @Column(name = "review_score", nullable = false, precision =2, scale = 1)
+    private BigDecimal reviewScore;
+
+    @CreationTimestamp
+    @Column(nullable = false, updatable = false)
+    private LocalDate created;
+
+    @UpdateTimestamp
+    @Column(nullable = false)
+    private LocalDate updated;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
