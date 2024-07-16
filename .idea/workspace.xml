@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="25128750-e3f4-4858-a842-0ecee1fdeef5" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/Entity/ProductRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/ProductController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/ProductService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/Product/dto/ProjectDTO.java" afterDir="false" />
+    <list default="true" id="25128750-e3f4-4858-a842-0ecee1fdeef5" name="변경" comment="feat: Product 프로세스 구현">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/user/entity/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/user/entity/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/security/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/security/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/security/detail/CustomOauth2UserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/security/detail/CustomOauth2UserDetailService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,14 +61,14 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/namung08/llk_server_fork.git&quot;,
-    &quot;accountId&quot;: &quot;a75f30ad-87a1-4b64-b30d-92f8e07e3af0&quot;
+    &quot;url&quot;: &quot;https://github.com/JangHwanPark/llk_server.git&quot;,
+    &quot;accountId&quot;: &quot;9d924460-1ab7-4367-8e58-66daa690629d&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
@@ -89,6 +86,8 @@
     "HTTP 요청.generated-requests | #3.executor": "Run",
     "HTTP 요청.generated-requests | #4.executor": "Run",
     "HTTP 요청.generated-requests | #5.executor": "Run",
+    "HTTP 요청.generated-requests | #6.executor": "Run",
+    "HTTP 요청.generated-requests | #7.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -108,6 +107,7 @@
     "project.structure.last.edited": "프로젝트",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -131,6 +131,12 @@
     <configuration name="generated-requests | #5" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="5" requestIdentifier="#5" runType="단일 요청 실행">
       <method v="2" />
     </configuration>
+    <configuration name="generated-requests | #6" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="6" requestIdentifier="#6" runType="단일 요청 실행">
+      <method v="2" />
+    </configuration>
+    <configuration name="generated-requests | #7" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/generated-requests.http" index="7" requestIdentifier="#7" runType="단일 요청 실행">
+      <method v="2" />
+    </configuration>
     <configuration name="LlkServerSpringApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="llk_server_fork.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.real_estate.llk_server_spring.LlkServerSpringApplication" />
@@ -140,6 +146,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP 요청.generated-requests | #7" />
+        <item itemvalue="HTTP 요청.generated-requests | #6" />
         <item itemvalue="HTTP 요청.generated-requests | #5" />
         <item itemvalue="HTTP 요청.generated-requests | #4" />
         <item itemvalue="HTTP 요청.generated-requests | #3" />
@@ -149,8 +157,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.18034.62" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.18034.62" />
       </set>
     </attachedChunks>
   </component>
@@ -165,7 +173,23 @@
       <workItem from="1719547636536" duration="546000" />
       <workItem from="1719548207020" duration="80000" />
       <workItem from="1719926188486" duration="2159000" />
+      <workItem from="1720098541310" duration="49000" />
+      <workItem from="1720098649824" duration="385000" />
+      <workItem from="1720099769399" duration="327000" />
+      <workItem from="1720123925523" duration="485000" />
+      <workItem from="1720129102706" duration="1063000" />
+      <workItem from="1720177953110" duration="575000" />
+      <workItem from="1721133813456" duration="3606000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: Product 프로세스 구현">
+      <option name="closed" value="true" />
+      <created>1720097985301</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1720097985301</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -176,22 +200,33 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="FILTERS">
-                <map>
-                  <entry key="branch">
-                    <value>
-                      <list>
-                        <option value="origin/LLK-6-BE-API-" />
-                      </list>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: Product 프로세스 구현" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: Product 프로세스 구현" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/com/real_estate/llk_server_spring/review/ReviewController.java</url>
+          <line>20</line>
+          <properties class="com.real_estate.llk_server_spring.review.ReviewController" method="getReviewList">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

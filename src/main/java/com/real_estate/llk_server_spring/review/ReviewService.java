@@ -52,12 +52,13 @@ public class ReviewService {
     }
 
     public ResponseEntity<?> getReviewListProc(String licenseNumber) {
-        Map<String, Object> result = new HashMap<>();
         Agent agent = llkUtil.usingLicenseNumberGetAgent(licenseNumber);
         List<Review> reviews = reviewRepository.findByAgent(agent);
-        List<Object> list = new ArrayList<>();
+        List<Map<String, Object>> list = new ArrayList<>();
+
         for (Review review : reviews) {
-            result.put("user_name",review.getUser().getEmail());
+            Map<String, Object> result = new HashMap<>();
+            result.put("user_name", review.getUser().getEmail());
             result.put("review_name", review.getReviewName());
             result.put("review_description", review.getReviewDescription());
             result.put("review_address", review.getAddress());
@@ -67,6 +68,7 @@ public class ReviewService {
             result.put("review_edit_date", review.getUpdated());
             list.add(result);
         }
+
         return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 }
