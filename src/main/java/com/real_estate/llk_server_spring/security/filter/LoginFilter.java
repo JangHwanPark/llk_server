@@ -70,11 +70,11 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         refreshRepository.deleteByUsername(email);
 
         //토큰 생성
-        String access = util.createJwt("Access", email, role, 10*10000L);
-        String refresh = util.createJwt("Refresh", email, role, 30*10000L);
+        String access = util.createJwt("Access", email, role, 10*60000L);
+        String refresh = util.createJwt("Refresh", email, role, 30*60000L);
 
         //Refresh 토큰 저장
-        addRefreshEntity(email, refresh, 60000L);
+        addRefreshEntity(email, refresh, 30*60000L);
 
         //응답 설정
         response.setHeader("Access", access);
