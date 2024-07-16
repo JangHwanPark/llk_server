@@ -5,10 +5,9 @@ import com.real_estate.llk_server_spring.exception.LlkServerExceptionErrorCode;
 import com.real_estate.llk_server_spring.review.dto.AddReviewDTO;
 import com.real_estate.llk_server_spring.review.entity.Review;
 import com.real_estate.llk_server_spring.review.entity.ReviewRepository;
-import com.real_estate.llk_server_spring.security.jwt.JWTUtil;
+import com.real_estate.llk_server_spring.review.entity.ReviewType;
 import com.real_estate.llk_server_spring.user.entity.Agent;
 import com.real_estate.llk_server_spring.user.entity.AgentRepository;
-import com.real_estate.llk_server_spring.user.entity.UserRepository;
 import com.real_estate.llk_server_spring.user.entity.Users;
 import com.real_estate.llk_server_spring.util.LlkUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,6 +28,16 @@ public class ReviewService {
 
     public ResponseEntity<?> addReviewProc(AddReviewDTO addReviewDTO, HttpServletRequest req) {
         Users user = llkUtil.usingRequestGetUser(req);
+        try {
+            llkUtil.usingStringDataValidationCheck(addReviewDTO.getReviewName());
+            llkUtil.usingStringDataValidationCheck(addReviewDTO.getReviewDescription());
+            llkUtil.usingStringDataValidationCheck(addReviewDTO.getAddress());
+            llkUtil.usingStringDataValidationCheck(addReviewDTO.getAgentLicense());
+            llkUtil.usingStringDataValidationCheck(String.valueOf(addReviewDTO.getReviewType()));
+            llkUtil.usingStringDataValidationCheck(String.valueOf(addReviewDTO.getReviewScore()));
+        }catch (LlkServerException e) {
+            return ResponseEntity.status(e.getHttpStatus()).body(e.getMessage());
+        }
         Agent agent = llkUtil.usingLicenseNumberGetAgent(addReviewDTO.getAgentLicense());
         Review review = new Review();
         review.setReviewName(addReviewDTO.getReviewName());

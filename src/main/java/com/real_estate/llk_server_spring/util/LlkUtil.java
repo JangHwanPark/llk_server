@@ -4,6 +4,7 @@ import com.real_estate.llk_server_spring.exception.LlkServerException;
 import com.real_estate.llk_server_spring.exception.LlkServerExceptionErrorCode;
 import com.real_estate.llk_server_spring.review.entity.Review;
 import com.real_estate.llk_server_spring.review.entity.ReviewRepository;
+import com.real_estate.llk_server_spring.review.entity.ReviewType;
 import com.real_estate.llk_server_spring.security.jwt.JWTUtil;
 import com.real_estate.llk_server_spring.user.entity.Agent;
 import com.real_estate.llk_server_spring.user.entity.AgentRepository;
@@ -42,5 +43,11 @@ public class LlkUtil {
 
     public List<Review> usingAgentEntityGetReview(Agent agent) {
         return reviewRepository.findByAgent(agent);
+    }
+
+    public void usingStringDataValidationCheck(String str) throws LlkServerException{
+        if (str == null || str.isEmpty()) {
+            throw new LlkServerException(HttpStatus.BAD_REQUEST,LlkServerExceptionErrorCode.DONT_REQUEST_DATA);
+        }
     }
 }
