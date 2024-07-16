@@ -18,7 +18,7 @@ public class ReviewController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<?> getReviewList() {
-        return reviewService.getReviewList();
+    public ResponseEntity<?> getReviewList(@RequestParam String licenseNumber) {
+        return reviewService.getReviewList(licenseNumber);
     }
 }

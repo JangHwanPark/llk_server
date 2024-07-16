@@ -17,8 +17,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.math.BigDecimal;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -29,22 +29,35 @@ public class ReviewService {
 
     public ResponseEntity<?> addReviewProc(AddReviewDTO addReviewDTO, HttpServletRequest req) {
         Users user = llkUtil.usingRequestGetUser(req);
-        Agent agent = agentRepository.findByLicenseNumber(addReviewDTO.getAgentLicense())
-                .orElseThrow( ()-> new LlkServerException(HttpStatus.NOT_FOUND, LlkServerExceptionErrorCode.NOT_FOUNT_AGENT));
+        Agent agent = llkUtil.usingLicenseNumberGetAgent(addReviewDTO.getAgentLicense());
         Review review = new Review();
         review.setReviewName(addReviewDTO.getReviewName());
         review.setReviewDescription(addReviewDTO.getReviewDescription());
         review.setAddress(addReviewDTO.getAddress());
-        review.setReviewScore(addReviewDTO.getReviewScore());
+        review.setReviewScore(BigDecimal.valueOf(addReviewDTO.getReviewScore()));
         review.setType(addReviewDTO.getReviewType());
         review.setUser(user);
         review.setAgent(agent);
-        Review result = reviewRepository.save(review);
-        return ResponseEntity.status(HttpStatus.CREATED).body(result);
+        reviewRepository.save(review);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Success write review");
     }
 
-    public ResponseEntity<?> getReviewList() {
-        List<Review> reviewList = reviewRepository.findAll();
-        return ResponseEntity.status(HttpStatus.OK).body(reviewList);
+    public ResponseEntity<?> getReviewList(String licenseNumber) {
+        Map<String, Object> result = new HashMap<>();
+        Agent agent = llkUtil.usingLicenseNumberGetAgent(licenseNumber);
+        List<Review> reviews = reviewRepository.findByAgent(agent);
+        List<Object> list = new ArrayList<>();
+        for (Review review : reviews) {
+            result.put("uesr_name",review.getUser().getEmail());
+            result.put("review_name", review.getReviewName());
+            result.put("review_description", review.getReviewDescription());
+            result.put("review_address", review.getAddress());
+            result.put("review_score", review.getReviewScore());
+            result.put("review_type", review.getType());
+            result.put("review_date", review.getCreated());
+            result.put("review_edit_date", review.getUpdated());
+            list.add(result);
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(list);
     }
 }
