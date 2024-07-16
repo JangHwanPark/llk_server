@@ -24,8 +24,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ReviewService {
     private final ReviewRepository reviewRepository;
-    private final JWTUtil util;
-    private final UserRepository userRepository;
     private final AgentRepository agentRepository;
     private final LlkUtil llkUtil;
 
@@ -37,6 +35,8 @@ public class ReviewService {
         review.setReviewName(addReviewDTO.getReviewName());
         review.setReviewDescription(addReviewDTO.getReviewDescription());
         review.setAddress(addReviewDTO.getAddress());
+        review.setReviewScore(addReviewDTO.getReviewScore());
+        review.setType(addReviewDTO.getReviewType());
         review.setUser(user);
         review.setAgent(agent);
         Review result = reviewRepository.save(review);
