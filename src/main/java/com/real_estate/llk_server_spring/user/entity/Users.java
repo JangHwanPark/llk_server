@@ -1,6 +1,5 @@
 package com.real_estate.llk_server_spring.user.entity;
 
-import com.real_estate.llk_server_spring.review.entity.Review;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +7,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Getter @Setter
@@ -40,12 +38,6 @@ public class Users {
     @UpdateTimestamp
     @Column(nullable = false)
     private LocalDateTime updated;
-
-    @OneToOne(mappedBy = "users")
-    private Agent agent;
-
-    @OneToMany(mappedBy = "user")
-    private Set<Review> reviews;
 
     public Users() {}
 
