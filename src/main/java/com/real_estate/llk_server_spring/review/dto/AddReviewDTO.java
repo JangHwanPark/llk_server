@@ -4,8 +4,6 @@ import com.real_estate.llk_server_spring.review.entity.ReviewType;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.math.BigDecimal;
-
 @Getter @Setter
 public class AddReviewDTO {
     private String reviewName;
@@ -13,5 +11,5 @@ public class AddReviewDTO {
     private String address;
     private String agentLicense;
     private ReviewType reviewType;
-    private BigDecimal reviewScore;
+    private Integer reviewScore;
 }
