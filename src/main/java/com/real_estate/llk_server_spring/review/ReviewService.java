@@ -58,6 +58,7 @@ public class ReviewService {
 
         for (Review review : reviews) {
             Map<String, Object> result = new HashMap<>();
+            result.put("review_id", review.getId());
             result.put("user_name", review.getUser().getEmail());
             result.put("review_name", review.getReviewName());
             result.put("review_description", review.getReviewDescription());
