@@ -27,7 +27,7 @@ public class Review {
     @Column(name = "review_name", nullable = false)
     private String reviewName;
 
-    @Column(name = "review_description", nullable = false)
+    @Column(name = "review_description", nullable = false, columnDefinition = "TEXT")
     private String reviewDescription;
 
     @Column(name = "address", nullable = false)
