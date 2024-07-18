@@ -1,13 +1,11 @@
 package com.real_estate.llk_server_spring.Product;
 
-import com.amazonaws.services.s3.AmazonS3Client;
 import com.real_estate.llk_server_spring.Product.Entity.Product;
 import com.real_estate.llk_server_spring.Product.Entity.ProductRepository;
 import com.real_estate.llk_server_spring.Product.dto.ProjectDTO;
 import com.real_estate.llk_server_spring.exception.LlkServerException;
 import com.real_estate.llk_server_spring.util.LlkUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -21,9 +19,6 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
     private final LlkUtil llkUtil;
-    private final AmazonS3Client amazonS3Client;
-    @Value("${s3.bucket-name}")
-    private String bucketName;
 
     public ResponseEntity<?> createProductProc(ProjectDTO projectDTO, List<MultipartFile> files) {
         try {
