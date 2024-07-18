@@ -18,7 +18,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.oauth2.client.web.OAuth2LoginAuthenticationFilter;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
@@ -58,7 +57,7 @@ public class SecurityConfig {
                             .requestMatchers("/join","/reissue","/products/**","/availability/email",
                                     "/contact","/review/list").permitAll()
                             .requestMatchers("/review/add").hasAnyRole("USER","ADMIN","AGENT")
-                            .requestMatchers("/admin/user/**").hasRole("ADMIN")
+                            .requestMatchers("/admin/user/**", "/products/add").hasRole("ADMIN")
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
