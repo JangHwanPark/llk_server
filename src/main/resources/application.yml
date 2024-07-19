@@ -15,7 +15,7 @@ spring:
     password: ${data.password}
     driver-class-name: org.postgresql.Driver
   config:
-    import: classpath:jwt.yml, classpath:database.yml, classpath:google-oauth2.yml
+    import: classpath:jwt.yml, classpath:database.yml, classpath:google-oauth2.yml, classpath:aws-s3.yml
   jpa:
     hibernate:
       ddl-auto: update
@@ -39,6 +39,10 @@ spring:
             scope:
               - profile
               - email
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1GB
 
 logging:
   level:
@@ -49,3 +53,23 @@ logging:
       springframework:
         security: debug
     root: info
+
+#google:
+#  cloud:
+#    translation:
+#      credentials:
+#        file:
+#          path: ${google.translation.json-key}
+
+aws:
+  cloud:
+    s3:
+      bucket: ${s3.bucket-name}
+    region:
+      static: ${s3.region}
+      auto: false
+    stack:
+      auto: false
+    credentials:
+      access-key: ${s3.access-key}
+      secret-key: ${s3.secret-key}
