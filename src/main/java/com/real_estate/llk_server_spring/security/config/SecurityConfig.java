@@ -58,6 +58,7 @@ public class SecurityConfig {
                                     "/contact","/review/list").permitAll()
                             .requestMatchers("/review/add").hasAnyRole("USER","ADMIN","AGENT")
                             .requestMatchers("/admin/user/**", "/products/add").hasRole("ADMIN")
+                            .requestMatchers("/region/state/add","/region/state/delete", "/region/state/update").hasAnyRole("ADMIN","AGENT")
                             .anyRequest().authenticated()
                 );
         http.cors((cors) ->
