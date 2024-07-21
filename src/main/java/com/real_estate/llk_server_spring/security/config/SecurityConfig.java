@@ -55,7 +55,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((req)->
                     req
                             .requestMatchers("/join","/reissue","/products/**","/availability/email",
-                                    "/contact","/review/list").permitAll()
+                                    "/contact","/review/list","/region/state/list").permitAll()
                             .requestMatchers("/review/add").hasAnyRole("USER","ADMIN","AGENT")
                             .requestMatchers("/admin/user/**", "/products/add").hasRole("ADMIN")
                             .requestMatchers("/region/state/add","/region/state/delete", "/region/state/update").hasAnyRole("ADMIN","AGENT")
