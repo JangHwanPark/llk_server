@@ -27,4 +27,9 @@ public class RegionController {
     public ResponseEntity<?> deleteState(@RequestBody DeleteStateDTO deleteStateDTO) {
         return regionService.deleteStateProc(deleteStateDTO);
     }
+
+    @GetMapping("/state/list")
+    public ResponseEntity<?> getStateList() {
+        return regionService.getStateListProc();
+    }
 }

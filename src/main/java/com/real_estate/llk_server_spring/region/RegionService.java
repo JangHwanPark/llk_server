@@ -14,6 +14,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class RegionService {
@@ -43,7 +45,7 @@ public class RegionService {
         llkUtil.usingStringDataValidationCheck(updateStateDTO.getStateName());
         llkUtil.usingStringDataValidationCheck(updateStateDTO.getStateAbbreviation());
         llkUtil.usingStringDataValidationCheck(String.valueOf(updateStateDTO.getStateId()));
-        if(stateRepository.existsById(updateStateDTO.getStateId())) {
+        if(!stateRepository.existsById(updateStateDTO.getStateId())) {
             throw new LlkServerException(HttpStatus.BAD_REQUEST, LlkServerExceptionErrorCode.NOT_FOUND_STATE);
         }
         stateRepository.updateStateNameAndStateAbbreviationById(updateStateDTO.getStateName(),updateStateDTO.getStateAbbreviation(),updateStateDTO.getStateId());
@@ -52,10 +54,15 @@ public class RegionService {
 
     public ResponseEntity<?> deleteStateProc(DeleteStateDTO deleteStateDTO) throws LlkServerException{
         llkUtil.usingStringDataValidationCheck(String.valueOf(deleteStateDTO.getStateId()));
-        if(stateRepository.existsById(deleteStateDTO.getStateId())) {
+        if(!stateRepository.existsById(deleteStateDTO.getStateId())) {
             throw new LlkServerException(HttpStatus.BAD_REQUEST, LlkServerExceptionErrorCode.NOT_FOUND_STATE);
         }
         stateRepository.deleteById(deleteStateDTO.getStateId());
         return ResponseEntity.status(HttpStatus.OK).body("State deleted successfully");
+    }
+
+    public ResponseEntity<?> getStateListProc() {
+        List<State> state = stateRepository.findAll();
+        return ResponseEntity.ok(state);
     }
 }
