@@ -62,7 +62,7 @@ public class RegionService {
     }
 
     public ResponseEntity<?> getStateListProc() {
-        List<State> state = stateRepository.findAll();
+        List<State> state = stateRepository.findAllByOrderById();
         return ResponseEntity.ok(state);
     }
 }
