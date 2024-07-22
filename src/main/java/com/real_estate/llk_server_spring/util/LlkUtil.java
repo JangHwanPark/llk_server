@@ -59,7 +59,7 @@ public class LlkUtil {
 
     public Agent usingLicenseNumberGetAgent(String licenseNumber) {
         return agentRepository.findByLicenseNumber(licenseNumber)
-                .orElseThrow(() -> new LlkServerException(HttpStatus.NOT_FOUND, LlkServerExceptionErrorCode.NOT_FOUNT_AGENT));
+                .orElseThrow(() -> new LlkServerException(HttpStatus.NOT_FOUND, LlkServerExceptionErrorCode.NOT_FOUND_AGENT));
     }
 
     public List<Review> usingAgentEntityGetReview(Agent agent) {
@@ -78,7 +78,7 @@ public class LlkUtil {
             for (MultipartFile file : fileList) {
                 if(file != null) {
                     File uploadFile = convert(file)
-                            .orElseThrow(() -> new LlkServerException(HttpStatus.INTERNAL_SERVER_ERROR,LlkServerExceptionErrorCode.FALE_IMG_CONVERT));
+                            .orElseThrow(() -> new LlkServerException(HttpStatus.INTERNAL_SERVER_ERROR,LlkServerExceptionErrorCode.FAIL_IMG_CONVERT));
                     ProductImgLinkList productImgLinkList = new ProductImgLinkList();
                     productImgLinkList.setImgLink(upload(uploadFile, dirName));
                     productImgLinkList.setProduct(product);
@@ -87,7 +87,7 @@ public class LlkUtil {
                 }
             }
         } catch (LlkServerException e) {
-            throw new LlkServerException(HttpStatus.INTERNAL_SERVER_ERROR, LlkServerExceptionErrorCode.FALE_IMG_CONVERT);
+            throw new LlkServerException(HttpStatus.INTERNAL_SERVER_ERROR, LlkServerExceptionErrorCode.FAIL_IMG_CONVERT);
         }
     }
 
@@ -127,7 +127,7 @@ public class LlkUtil {
                 return Optional.of(convertFile);
             }
         } catch (IOException | LlkServerException e) {
-            throw new LlkServerException(HttpStatus.INTERNAL_SERVER_ERROR, LlkServerExceptionErrorCode.FALE_IMG_CONVERT);
+            throw new LlkServerException(HttpStatus.INTERNAL_SERVER_ERROR, LlkServerExceptionErrorCode.FAIL_IMG_CONVERT);
         }
 
         return Optional.empty();
