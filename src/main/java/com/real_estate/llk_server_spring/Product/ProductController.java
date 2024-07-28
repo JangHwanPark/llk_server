@@ -1,6 +1,7 @@
 package com.real_estate.llk_server_spring.Product;
 
 import com.real_estate.llk_server_spring.Product.dto.ProjectDTO;
+import com.real_estate.llk_server_spring.common.CommonDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,5 +24,10 @@ public class ProductController {
     @PostMapping("/delete")
     public ResponseEntity<?> deleteProduct(@RequestBody String id) {
         return productService.deleteProductProc(id);
+    }
+
+    @GetMapping("/list")
+    public ResponseEntity<?> getProductList() {
+        return ResponseEntity.ok(CommonDTO.success(productService.getProductListProc()));
     }
 }
