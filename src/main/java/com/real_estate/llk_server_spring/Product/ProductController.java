@@ -21,9 +21,14 @@ public class ProductController {
         return productService.createProductProc(projectDTO, files);
     }
 
-    @PostMapping("/delete")
-    public ResponseEntity<?> deleteProduct(@RequestBody String id) {
-        return productService.deleteProductProc(id);
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteProduct(@PathVariable Long id) {
+        boolean isDeleted = productService.deleteProductProc(id);
+        if (isDeleted) {
+            return ResponseEntity.ok(CommonDTO.success("Product deleted successfully."));
+        } else {
+            return ResponseEntity.ok(CommonDTO.fail("Product not found."));
+        }
     }
 
     @GetMapping("/list")

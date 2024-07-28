@@ -57,8 +57,12 @@ public class ProductService {
         return ResponseEntity.status(HttpStatus.CREATED).body("product created successfully");
     }
 
-    public ResponseEntity<?> deleteProductProc(String id) {
-        return null;
+    public Boolean deleteProductProc(Long id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true;
+        }
+        return false;
     }
 
     public List<ProductListDTO> getProductListProc() {
