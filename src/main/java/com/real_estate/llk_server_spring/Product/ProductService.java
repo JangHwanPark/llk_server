@@ -2,6 +2,7 @@ package com.real_estate.llk_server_spring.Product;
 
 import com.real_estate.llk_server_spring.Product.Entity.Product;
 import com.real_estate.llk_server_spring.Product.Entity.ProductRepository;
+import com.real_estate.llk_server_spring.Product.dto.ProductListDTO;
 import com.real_estate.llk_server_spring.Product.dto.ProjectDTO;
 import com.real_estate.llk_server_spring.exception.LlkServerException;
 import com.real_estate.llk_server_spring.util.LlkUtil;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -55,7 +57,17 @@ public class ProductService {
         return ResponseEntity.status(HttpStatus.CREATED).body("product created successfully");
     }
 
-    public ResponseEntity<?> deleteProductProc(String id) {
-        return null;
+    public Boolean deleteProductProc(Long id) {
+        if (productRepository.existsById(id)) {
+            productRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    public List<ProductListDTO> getProductListProc() {
+        return productRepository.findAll().stream()
+                .map(ProductListDTO::new)
+                .toList();
     }
 }
