@@ -58,7 +58,7 @@ public class SecurityConfig {
                                     "/contact","/review/list","/region/state/list",
                                     "/products/list").permitAll()
                             .requestMatchers("/review/add").hasAnyRole("USER","ADMIN","AGENT")
-                            .requestMatchers("/admin/user/**", "/products/add").hasRole("ADMIN")
+                            .requestMatchers("/admin/user/**", "/products/add","/products/delete/**").hasRole("ADMIN")
                             .requestMatchers("/region/state/add","/region/state/delete", "/region/state/update").hasAnyRole("ADMIN","AGENT")
                             .anyRequest().authenticated()
                 );
